@@ -10,6 +10,6 @@ public class KakaoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        KakaoSdk.init(this, BuildConfig.KAKAO_APP_KEY);
+        KakaoSdk.init(this, BuildConfig.kakao_native_app_key);
     }
 }
