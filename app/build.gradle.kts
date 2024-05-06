@@ -30,7 +30,7 @@ android {
         manifestPlaceholders["kakao_native_app_key"] = kakaoNativeAppKey
 
         // 빌드 타입에 따라 다른 값을 설정할 수 있습니다.
-        buildConfigField("String", "KAKAO_APP_KEY", "\"$kakaoNativeAppKey\"")
+        buildConfigField("String", "kakao_native_app_key", "\"$kakaoNativeAppKey\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
