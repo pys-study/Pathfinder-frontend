@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.pathfinder.databinding.FragmentStartBinding;
 import com.kakao.sdk.auth.model.OAuthToken;
@@ -21,11 +23,20 @@ import kotlin.jvm.functions.Function2;
 public class StartFragment extends Fragment {
 
     private FragmentStartBinding binding;
-
+    private NavController navController;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentStartBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
+        super.onViewCreated(view, saveInstanceState);
+
+        // navController 가져오기
+        navController = Navigation.findNavController(view);
 
         Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
             @Override
@@ -40,37 +51,26 @@ public class StartFragment extends Fragment {
             }
         };
 
-        binding.SignUpLayout.setOnClickListener(view -> {
+        binding.SignUpLayout.setOnClickListener(v -> {
             if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(getContext())) {
                 UserApiClient.getInstance().loginWithKakaoTalk(getContext(), callback);
             } else {
                 UserApiClient.getInstance().loginWithKakaoAccount(getContext(), callback);
             }
-
-
-
         });
 
-        return binding.getRoot();
     }
 
     private void updateKaKaoLoginUi() {
         UserApiClient.getInstance().me((user, throwable) -> {
             if (user != null) {
                 Log.println(Log.INFO, "SignUpFragment", "사용자 정보 요청 성공");
-                openMainActivity();
+                // NickNameFragment로 이동
+                navController.navigate(R.id.action_startFragment_to_nickNameFragment);
             } else {
                 Log.e("SignUpFragment", "사용자 정보 요청 실패", throwable);
             }
             return null;
         });
     }
-
-    private void openMainActivity() {
-        if (getActivity() != null) {
-            getActivity().finish(); // 회원가입 프래그먼트를 호스팅하는 액티비티를 종료합니다.
-            startActivity(new Intent(getActivity(), MainActivity.class));
-        }
-    }
-
 }
