@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navAiChat"
+        android:icon="@drawable/icon_ai_chat"
+        android:title="@string/title_aiChat" />
+
+    <item
+        android:id="@+id/navTravelStart"
+        android:icon="@drawable/icon_travel_start"
+        android:title="@string/title_travelStart" />
+
+    <item
+        android:id="@+id/navCommunity"
+        android:icon="@drawable/icon_community"
+        android:title="@string/title_Community" />
+
+    <item
+        android:id="@+id/navMyPage"
+        android:icon="@drawable/icon_my_page"
+        android:title="@string/title_myPage" />
+</menu>

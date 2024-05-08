@@ -48,7 +48,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
         android:background="#B0D1F9"
-        android:text="중복검사"
+        android:text="확인"
         android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
