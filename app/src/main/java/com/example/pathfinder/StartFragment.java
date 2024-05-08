@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.pathfinder.databinding.SignUp1Binding;
+import com.example.pathfinder.databinding.FragmentStartBinding;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
 
-public class SignUpFragment extends Fragment {
+public class StartFragment extends Fragment {
 
-    private SignUp1Binding binding;
+    private FragmentStartBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = SignUp1Binding.inflate(inflater, container, false);
+        binding = FragmentStartBinding.inflate(inflater, container, false);
 
         Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
             @Override
@@ -45,6 +45,9 @@ public class SignUpFragment extends Fragment {
             } else {
                 UserApiClient.getInstance().loginWithKakaoAccount(getContext(), callback);
             }
+
+
+
         });
 
         return binding.getRoot();
