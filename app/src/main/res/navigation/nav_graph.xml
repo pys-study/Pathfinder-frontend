@@ -10,7 +10,10 @@
         android:label="StartFragment" >
         <action
             android:id="@+id/action_startFragment_to_nickNameFragment"
-            app:destination="@id/nickNameFragment" />
+            app:destination="@id/nickNameFragment"/>
+            <argument
+                android:name="userName"
+                app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/nickNameFragment"

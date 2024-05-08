@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
 
+        // 네비게이션바 가시성 설정
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.startFragment) {
+            // Using if-else to check the destination IDs
+            if (destination.getId() == R.id.startFragment || destination.getId() == R.id.nickNameFragment) {
                 binding.bottomNavigationView.setVisibility(View.GONE);
             } else {
                 binding.bottomNavigationView.setVisibility(View.VISIBLE);

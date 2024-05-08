@@ -1,5 +1,8 @@
 package com.example.pathfinder;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.pathfinder.databinding.FragmentNickNameBinding;
 import com.example.pathfinder.databinding.FragmentStartBinding;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
@@ -23,6 +27,7 @@ import kotlin.jvm.functions.Function2;
 public class StartFragment extends Fragment {
 
     private FragmentStartBinding binding;
+    private FragmentNickNameBinding nickNameBinding;
     private NavController navController;
     @Nullable
     @Override
@@ -46,6 +51,8 @@ public class StartFragment extends Fragment {
                 } else if (oAuthToken != null) {
                     Log.i("SignUpFragment", "로그인 성공 " + oAuthToken.getAccessToken());
                     updateKaKaoLoginUi();
+                    getUserinfo();
+
                 }
                 return null;
             }
@@ -59,6 +66,20 @@ public class StartFragment extends Fragment {
             }
         });
 
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void getUserinfo(){
+        UserApiClient.getInstance().me((user, meError) -> {
+            if (meError != null) {
+                Log.e(TAG, "사용자 정보 요청 실패", meError);
+            } else {
+                Log.i(TAG, "사용자 정보 요청 성공" +
+                        "\n회원번호: "+user.getId() +
+                        "\n이름: "+user.getKakaoAccount().getProfile().getNickname());
+            }
+            return null;
+        });
     }
 
     private void updateKaKaoLoginUi() {

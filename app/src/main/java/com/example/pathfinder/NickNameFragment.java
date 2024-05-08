@@ -2,32 +2,21 @@ package com.example.pathfinder;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pathfinder.databinding.FragmentNickNameBinding;
+
 public class NickNameFragment extends Fragment {
 
-    public NickNameFragment() {
-        // Required empty public constructor
-    }
-
-    public static NickNameFragment newInstance() {
-        NickNameFragment fragment = new NickNameFragment();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nick_name, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        FragmentNickNameBinding binding = FragmentNickNameBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 }
