@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/startFragment">
 
@@ -11,12 +12,20 @@
         <action
             android:id="@+id/action_startFragment_to_nickNameFragment"
             app:destination="@id/nickNameFragment"/>
-            <argument
-                android:name="userName"
-                app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/nickNameFragment"
         android:name="com.example.pathfinder.NickNameFragment"
-        android:label="NickNameFragment" />
+        android:label="NickNameFragment" >
+        <action
+            android:id="@+id/action_nickNameFragment_to_startTravelFragment"
+            app:destination="@id/startTravelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startTravelFragment"
+        android:name="com.example.pathfinder.StartTravelFragment"
+        android:label="StartTravelFragment"
+        tools:layout="@layout/fragment_start_travel"
+        app:startDestination="@id/startTravelFragment"/>
+
 </navigation>

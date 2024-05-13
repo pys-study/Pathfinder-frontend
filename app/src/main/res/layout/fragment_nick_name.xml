@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/btn_nickName_check"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="100dp"

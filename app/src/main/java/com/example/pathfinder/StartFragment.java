@@ -89,6 +89,7 @@ public class StartFragment extends Fragment {
         UserApiClient.getInstance().me((user, throwable) -> {
             if (user != null) {
                 Log.println(Log.INFO, "SignUpFragment", "사용자 정보 요청 성공");
+                // SharedViewModel에 닉네임 저장
                 viewModel.setNickname(user.getKakaoAccount().getProfile().getNickname());
                 // NickNameFragment로 이동
                 navController.navigate(R.id.action_startFragment_to_nickNameFragment);
