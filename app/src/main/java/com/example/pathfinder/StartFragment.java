@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -27,8 +28,8 @@ import kotlin.jvm.functions.Function2;
 public class StartFragment extends Fragment {
 
     private FragmentStartBinding binding;
-    private FragmentNickNameBinding nickNameBinding;
     private NavController navController;
+    private SharedViewModel viewModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class StartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle saveInstanceState){
         super.onViewCreated(view, saveInstanceState);
 
+        // SharedViewModel 가져오기
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         // navController 가져오기
         navController = Navigation.findNavController(view);
 
@@ -86,6 +89,7 @@ public class StartFragment extends Fragment {
         UserApiClient.getInstance().me((user, throwable) -> {
             if (user != null) {
                 Log.println(Log.INFO, "SignUpFragment", "사용자 정보 요청 성공");
+                viewModel.setNickname(user.getKakaoAccount().getProfile().getNickname());
                 // NickNameFragment로 이동
                 navController.navigate(R.id.action_startFragment_to_nickNameFragment);
             } else {
