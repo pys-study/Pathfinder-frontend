@@ -26,6 +26,14 @@
         android:name="com.example.pathfinder.StartTravelFragment"
         android:label="StartTravelFragment"
         tools:layout="@layout/fragment_start_travel"
-        app:startDestination="@id/startTravelFragment"/>
+        app:startDestination="@id/startTravelFragment">
+        <action
+            android:id="@+id/action_startTravelFragment_to_selectCountryFragment"
+            app:destination="@id/selectCountryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectCountryFragment"
+        android:name="com.example.pathfinder.SelectCountryFragment"
+        android:label="SelectCountryFragment" />
 
 </navigation>

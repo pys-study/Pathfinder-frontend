@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/japanLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_arrow" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_earth" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="떠나고 싶은 도시는?"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="도시 1곳을 선택해주세요."
+                android:textColor="#6D6D6D"
+                android:textSize="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/japanLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/chinaLaytout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="15dp"
+                android:text="일본"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/japan_1"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border_select_button"
+                android:text="도쿄"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/japan_2"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border_select_button"
+                android:text="후쿠오카"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/japan_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/japan_3"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="오사카"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/japan_1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/japan_4"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="나고야"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/japan_3" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/japan_5"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="시즈오카"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/japan_3"
+                app:layout_constraintTop_toBottomOf="@+id/japan_2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/japan_6"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="삿포로"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/japan_4"
+                app:layout_constraintTop_toBottomOf="@+id/japan_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/japan_7"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="오키나와"
+                android:textColor="#777777"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/japan_4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chinaLaytout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/koreaLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/japanLayout">
+
+            <TextView
+                android:id="@+id/tvChina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="15dp"
+                android:text="중화/중국"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/china_1"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border_select_button"
+                android:text="가오슝"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/china_2"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border_select_button"
+                android:text="칭다오"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/china_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/china_3"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="홍콩"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/china_1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/china_4"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="상하이"
+                android:textColor="#777777"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/china_3" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/china_5"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="타이베이"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/china_3"
+                app:layout_constraintTop_toBottomOf="@+id/china_2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/china_6"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="베이징"
+                android:textColor="#777777"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/china_4"
+                app:layout_constraintTop_toBottomOf="@+id/china_5" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/koreaLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btnNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chinaLaytout">
+
+            <TextView
+                android:id="@+id/tvKorea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="15dp"
+                android:text="일본"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_1"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border_select_button"
+                android:text="가평/양평"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/korea_2"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border_select_button"
+                android:text="강릉/속초"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/korea_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/korea_3"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="경주"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/korea_1" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/korea_4"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="부산"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/korea_3"
+                app:layout_constraintTop_toBottomOf="@+id/korea_2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_5"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="여수"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/korea_3" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_6"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="인천"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/korea_5"
+                app:layout_constraintTop_toBottomOf="@+id/korea_4" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_7"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="전주"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/korea_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_8"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="제주"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/korea_7"
+                app:layout_constraintTop_toBottomOf="@+id/korea_5" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_9"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="춘천/홍천"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/korea_7" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_10"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="태안"
+                android:textColor="#777777"
+                app:layout_constraintStart_toEndOf="@+id/korea_9"
+                app:layout_constraintTop_toBottomOf="@+id/korea_8" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_11"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="통영/거제/남해"
+                android:textColor="#777777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/korea_9" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/korea_12"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_select_button"
+                android:text="포항/안동"
+                android:textColor="#777777"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/korea_11"
+                app:layout_constraintTop_toBottomOf="@+id/korea_10" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNext"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/basic_btn"
+            android:text="다음"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/koreaLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+
