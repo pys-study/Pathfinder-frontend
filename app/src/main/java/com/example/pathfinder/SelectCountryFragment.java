@@ -21,6 +21,11 @@ public class SelectCountryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSelectCountryBinding.inflate(inflater, container, false);
 
+        binding.btnNext.setOnClickListener(v->{
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_selectCountryFragment_to_periodFragment);
+        });
+
         return binding.getRoot();
     }
 }
