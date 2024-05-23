@@ -34,7 +34,11 @@
     <fragment
         android:id="@+id/selectCountryFragment"
         android:name="com.example.pathfinder.SelectCountryFragment"
-        android:label="SelectCountryFragment" />
+        android:label="SelectCountryFragment" >
+        <action
+            android:id="@+id/action_selectCountryFragment_to_periodFragment"
+            app:destination="@id/periodFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/communityFragment"
@@ -48,6 +52,10 @@
         android:id="@+id/aiChatFragment"
         android:name="com.example.pathfinder.AiChatFragment"
         android:label="AiChatFragment" />
+    <fragment
+        android:id="@+id/periodFragment"
+        android:name="com.example.pathfinder.PeriodFragment"
+        android:label="PeriodFragment" />
 
 
 </navigation>
