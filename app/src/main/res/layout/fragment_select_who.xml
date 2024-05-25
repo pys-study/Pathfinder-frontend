@@ -66,7 +66,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/gang" />
+            app:srcCompat="@drawable/icon_people" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,8 +96,8 @@
             android:id="@+id/btn_friend"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/border_select_button"
             android:text="친구와"
             android:textColor="#777777"
@@ -109,8 +109,8 @@
             android:id="@+id/btn_partner"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/border_select_button"
             android:text="연인과"
             android:textColor="#777777"
@@ -122,8 +122,8 @@
             android:id="@+id/btn_spouse"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/border_select_button"
             android:text="배우자와"
             android:textColor="#777777"
@@ -147,8 +147,8 @@
             android:id="@+id/btn_parents"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/border_select_button"
             android:text="부모님과"
             android:textColor="#777777"

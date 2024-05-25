@@ -33,14 +33,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_ticket" />
+            app:srcCompat="@drawable/icon_schedule" />
 
         <TextView
-            android:id="@+id/textViewTravelStyle"
+            android:id="@+id/textViewSchedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="내가 선호하는\n여행 스타일은?"
+            android:text="선호하는\n여행 일정은?"
             android:textAlignment="center"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -52,12 +52,12 @@
             android:id="@+id/textViewMultipleChoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="다중 선택이 가능해요."
+            android:text="선택해주신 스타일로 일정을 만들어드려요."
             android:textColor="#6D6D6D"
             android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTravelStyle" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSchedule" />
 
         <TextView
             android:id="@+id/textViewNumber"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="4/5"
+            android:text="5/5"
             android:textColor="#006CA9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -83,91 +83,29 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnActivity"
-            android:layout_width="150dp"
+            android:layout_width="339dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/border_select_button"
-            android:text="체험/액티비티"
+            android:text="빼곡한 일정 선호"
             android:textColor="#777777"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-
-            android:id="@+id/btnHotPlace"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/border_select_button"
-            android:text="SNS핫플레이스"
-            android:textColor="#777777"
-            app:layout_constraintStart_toEndOf="@+id/btnActivity"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
 
             android:id="@+id/btnNature"
-            android:layout_width="150dp"
+            android:layout_width="339dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/border_select_button"
-            android:text="자연과 함께"
+            android:text="널널한 일정 선호"
             android:textColor="#777777"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnActivity" />
 
-        <androidx.appcompat.widget.AppCompatButton
-
-            android:id="@+id/btnFamousSpots"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_select_button"
-            android:text="유명 관광지는 필수"
-            android:textColor="#777777"
-            app:layout_constraintStart_toEndOf="@+id/btnNature"
-            app:layout_constraintTop_toBottomOf="@+id/btnHotPlace" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnTravelVibe"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_select_button"
-            android:text="여행지 느낌 물씬"
-            android:textColor="#777777"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnNature" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnShopping"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_select_button"
-            android:text="쇼핑은 열정적으로"
-            android:textColor="#777777"
-            app:layout_constraintStart_toEndOf="@+id/btnTravelVibe"
-            app:layout_constraintTop_toBottomOf="@+id/btnFamousSpots" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnFoodTour"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border_select_button"
-            android:text="관광보다 먹방"
-            android:textColor="#777777"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnTravelVibe" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
