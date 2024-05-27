@@ -1,4 +1,4 @@
-package com.example.pathfinder;
+package com.example.pathfinder.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.pathfinder.R;
+import com.example.pathfinder.SharedViewModel;
 import com.example.pathfinder.databinding.FragmentNickNameBinding;
 
 public class NickNameFragment extends Fragment {

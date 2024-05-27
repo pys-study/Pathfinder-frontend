@@ -1,4 +1,4 @@
-package com.example.pathfinder;
+package com.example.pathfinder.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,21 +11,23 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.pathfinder.databinding.FragmentSelectCountryBinding;
+import com.example.pathfinder.R;
+import com.example.pathfinder.databinding.FragmentStartTravelBinding;
 
-public class SelectCountryFragment extends Fragment {
+public class StartTravelFragment extends Fragment {
 
-    private FragmentSelectCountryBinding binding;
+    private FragmentStartTravelBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentSelectCountryBinding.inflate(inflater, container, false);
+        binding = FragmentStartTravelBinding.inflate(inflater, container, false);
 
-        binding.btnNext.setOnClickListener(v->{
+        binding.btnStartRecommend.setOnClickListener(v->{
             NavController navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.action_selectCountryFragment_to_periodFragment);
+            navController.navigate(R.id.action_startTravelFragment_to_selectCountryFragment);
         });
 
         return binding.getRoot();
     }
+
 }

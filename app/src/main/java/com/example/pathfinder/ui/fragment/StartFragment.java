@@ -1,4 +1,4 @@
-package com.example.pathfinder;
+package com.example.pathfinder.ui.fragment;
 
 import static androidx.fragment.app.FragmentManager.TAG;
 
@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.pathfinder.R;
+import com.example.pathfinder.SharedViewModel;
 import com.example.pathfinder.databinding.FragmentNickNameBinding;
 import com.example.pathfinder.databinding.FragmentStartBinding;
 import com.kakao.sdk.auth.model.OAuthToken;

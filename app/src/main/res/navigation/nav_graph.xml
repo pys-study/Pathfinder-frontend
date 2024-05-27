@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.pathfinder.StartFragment"
+        android:name="com.example.pathfinder.ui.fragment.StartFragment"
         android:label="StartFragment" >
         <action
             android:id="@+id/action_startFragment_to_nickNameFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/nickNameFragment"
-        android:name="com.example.pathfinder.NickNameFragment"
+        android:name="com.example.pathfinder.ui.fragment.NickNameFragment"
         android:label="NickNameFragment" >
         <action
             android:id="@+id/action_nickNameFragment_to_startTravelFragment"
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/startTravelFragment"
-        android:name="com.example.pathfinder.StartTravelFragment"
+        android:name="com.example.pathfinder.ui.fragment.StartTravelFragment"
         android:label="StartTravelFragment"
         tools:layout="@layout/fragment_start_travel"
         app:startDestination="@id/startTravelFragment">
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectCountryFragment"
-        android:name="com.example.pathfinder.SelectCountryFragment"
+        android:name="com.example.pathfinder.ui.fragment.SelectCountryFragment"
         android:label="SelectCountryFragment" >
         <action
             android:id="@+id/action_selectCountryFragment_to_periodFragment"
@@ -42,19 +42,19 @@
 
     <fragment
         android:id="@+id/communityFragment"
-        android:name="com.example.pathfinder.CommunityFragment"
+        android:name="com.example.pathfinder.ui.fragment.CommunityFragment"
         android:label="CommunityFragment" />
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.example.pathfinder.MyPageFragment"
+        android:name="com.example.pathfinder.ui.fragment.MyPageFragment"
         android:label="MyPageFragment" />
     <fragment
         android:id="@+id/aiChatFragment"
-        android:name="com.example.pathfinder.AiChatFragment"
+        android:name="com.example.pathfinder.ui.fragment.AiChatFragment"
         android:label="AiChatFragment" />
     <fragment
         android:id="@+id/periodFragment"
-        android:name="com.example.pathfinder.PeriodFragment"
+        android:name="com.example.pathfinder.ui.fragment.PeriodFragment"
         android:label="PeriodFragment" />
 
 
