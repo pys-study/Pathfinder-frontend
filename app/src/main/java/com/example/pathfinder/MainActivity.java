@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
 import com.example.pathfinder.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

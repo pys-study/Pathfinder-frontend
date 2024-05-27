@@ -1,4 +1,4 @@
-package com.example.pathfinder;
+package com.example.pathfinder.ui.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

@@ -1,6 +1,8 @@
-package com.example.pathfinder;
+package com.example.pathfinder.data;
 
 import android.app.Application;
+
+import com.example.pathfinder.BuildConfig;
 import com.kakao.sdk.common.KakaoSdk;
 
 public class KakaoApplication extends Application {

@@ -13,7 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.pathfinder.R;
-import com.example.pathfinder.SharedViewModel;
+import com.example.pathfinder.ui.viewmodel.SharedViewModel;
 import com.example.pathfinder.databinding.FragmentNickNameBinding;
 
 public class NickNameFragment extends Fragment {
