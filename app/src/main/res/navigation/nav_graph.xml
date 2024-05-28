@@ -55,7 +55,15 @@
     <fragment
         android:id="@+id/periodFragment"
         android:name="com.example.pathfinder.ui.fragment.PeriodFragment"
-        android:label="PeriodFragment" />
+        android:label="PeriodFragment" >
+        <action
+            android:id="@+id/action_periodFragment_to_selectWhoFragment"
+            app:destination="@id/selectWhoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectWhoFragment"
+        android:name="com.example.pathfinder.ui.fragment.SelectWhoFragment"
+        android:label="SelectWhoFragment" />
 
 
 </navigation>
