@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         // 네비게이션바 가시성 설정
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             // Using if-else to check the destination IDs
-            if (destination.getId() == R.id.startFragment || destination.getId() == R.id.nickNameFragment) {
-                binding.bottomNavigationView.setVisibility(View.GONE);
-            } else {
+            if (destination.getId() == R.id.startTravelFragment || destination.getId() == R.id.aiChatFragment || destination.getId() == R.id.communityFragment || destination.getId() == R.id.myPageFragment) {
                 binding.bottomNavigationView.setVisibility(View.VISIBLE);
+            } else {
+                binding.bottomNavigationView.setVisibility(View.GONE);
             }
         });
         // 메뉴 항목 선택 시의 동작을 정의

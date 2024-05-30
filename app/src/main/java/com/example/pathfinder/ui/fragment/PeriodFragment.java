@@ -24,7 +24,7 @@ public class PeriodFragment extends Fragment {
         binding = FragmentPeriodBinding.inflate(inflater, container, false);
 
         binding.btnNext.setOnClickListener(v -> {
-            NavController navController = NavHostFragment.findNavController(this);
+            NavController navController  = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_periodFragment_to_selectWhoFragment);
         });
 

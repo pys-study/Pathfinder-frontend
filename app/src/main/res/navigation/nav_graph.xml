@@ -63,7 +63,23 @@
     <fragment
         android:id="@+id/selectWhoFragment"
         android:name="com.example.pathfinder.ui.fragment.SelectWhoFragment"
-        android:label="SelectWhoFragment" />
+        android:label="SelectWhoFragment" >
+        <action
+            android:id="@+id/action_selectWhoFragment_to_selectTravelStyle"
+            app:destination="@id/selectTravelStyle" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectTravelStyle"
+        android:name="com.example.pathfinder.ui.fragment.SelectTravelStyle"
+        android:label="SelectTravelStyle" >
+        <action
+            android:id="@+id/action_selectTravelStyle_to_selectScheduleChoice"
+            app:destination="@id/selectScheduleChoice" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectScheduleChoice"
+        android:name="com.example.pathfinder.ui.fragment.SelectScheduleChoice"
+        android:label="SelectScheduleChoice" />
 
 
 </navigation>
