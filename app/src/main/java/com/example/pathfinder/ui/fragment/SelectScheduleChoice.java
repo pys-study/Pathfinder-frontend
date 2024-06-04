@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.pathfinder.R;
 import com.example.pathfinder.databinding.FragmentScheduleChoiceBinding;
 
 public class SelectScheduleChoice extends Fragment {
@@ -18,6 +21,11 @@ public class SelectScheduleChoice extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentScheduleChoiceBinding.inflate(inflater, container, false);
+
+        binding.btnNext.setOnClickListener(v -> {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_selectScheduleChoice_to_googleMapFragment);
+        });
 
         return binding.getRoot();
     }

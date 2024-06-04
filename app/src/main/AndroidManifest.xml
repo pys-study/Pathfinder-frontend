@@ -15,6 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PathFinder"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBnb8SD28OklxAyKVowSk7iqGEpGX1SGh4"/>
+
+
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"

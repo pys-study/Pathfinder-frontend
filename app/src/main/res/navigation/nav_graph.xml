@@ -79,7 +79,16 @@
     <fragment
         android:id="@+id/selectScheduleChoice"
         android:name="com.example.pathfinder.ui.fragment.SelectScheduleChoice"
-        android:label="SelectScheduleChoice" />
+        android:label="SelectScheduleChoice" >
+        <action
+            android:id="@+id/action_selectScheduleChoice_to_googleMapFragment"
+            app:destination="@id/googleMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/googleMapFragment"
+        android:name="com.example.pathfinder.ui.fragment.GoogleMapFragment"
+        android:label="framgent_google_map"
+        tools:layout="@layout/framgent_google_map" />
 
 
 </navigation>
