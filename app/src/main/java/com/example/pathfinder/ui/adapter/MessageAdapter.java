@@ -53,13 +53,17 @@ public class MessageAdapter extends ListAdapter<MessageDto, MessageAdapter.Messa
         // 텍스트뷰의 레이아웃 파라미터를 가져옵니다.
         ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) holder.binding.textViewMessage.getLayoutParams();
 
+        // 텍스트 색상 및 아이콘 기본값 초기화
+        holder.binding.textViewMessage.setTextColor(holder.itemView.getContext().getResources().getColor(android.R.color.white));
+        holder.binding.messageIcon.setVisibility(View.GONE);
+
         if (message.isMine()) {  // 메시지가 사용자가 보낸 것이라면
             // 텍스트뷰를 오른쪽에 정렬합니다.
             layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
             layoutParams.startToStart = ConstraintLayout.LayoutParams.UNSET;
             // 배경을 오른쪽 메시지용으로 설정합니다.
             holder.binding.textViewMessage.setBackgroundResource(R.drawable.message_background_right);
-            holder.binding.messageIcon.setVisibility(View.GONE);
+
 
         } else {  // 메시지가 상대방이 보낸 것이라면
             // 텍스트뷰를 왼쪽에 정렬합니다.
@@ -68,6 +72,7 @@ public class MessageAdapter extends ListAdapter<MessageDto, MessageAdapter.Messa
             // 배경을 왼쪽 메시지용으로 설정합니다.
             holder.binding.textViewMessage.setBackgroundResource(R.drawable.message_background_left);
             holder.binding.textViewMessage.setTextColor(holder.itemView.getContext().getResources().getColor(android.R.color.darker_gray));
+            holder.binding.messageIcon.setVisibility(View.VISIBLE);
         }
 
         // 변경된 레이아웃 파라미터를 텍스트뷰에 적용합니다.
