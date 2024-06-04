@@ -31,4 +31,8 @@ public class MessageRepository {
     public void insert(final MessageEntity message) {
         executorService.execute(() -> messageDao.insert(message));
     }
+
+    public void deleteAll() {
+        executorService.execute(messageDao::deleteAll);
+    }
 }

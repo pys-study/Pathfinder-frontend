@@ -31,4 +31,8 @@ public class ChatViewModel extends AndroidViewModel {
         MessageEntity message = new MessageEntity(content, isMine);
         repository.insert(message);
     }
+
+    public void deleteAllMessages() {
+        repository.deleteAll();
+    }
 }

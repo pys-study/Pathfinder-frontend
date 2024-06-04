@@ -19,4 +19,10 @@ public interface MessageDao {
 
     @Query("SELECT * FROM messages ORDER BY id ASC")
     LiveData<List<MessageEntity>> getAllMessages();
+
+    @Query("DELETE FROM messages WHERE id = :messageId")
+    void deleteById(int messageId);
+
+    @Query("DELETE FROM messages")
+    void deleteAll();
 }
