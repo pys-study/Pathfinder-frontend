@@ -3,6 +3,8 @@ package com.example.pathfinder.data.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.pathfinder.dto.MessageDto;
+
 @Entity(tableName = "messages")
 public class MessageEntity {
     @PrimaryKey(autoGenerate = true)
@@ -29,5 +31,10 @@ public class MessageEntity {
 
     public boolean isMine() {
         return isMine;
+    }
+
+
+    public MessageDto toDto() {
+        return new MessageDto(content, isMine);
     }
 }

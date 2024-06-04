@@ -1,12 +1,12 @@
 package com.example.pathfinder.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.graphics.Rect;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +39,7 @@ public class AiChatFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAiChatBinding.inflate(inflater, container, false);
         chatViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+
         setupChat();
         return binding.getRoot();
     }
@@ -51,7 +52,7 @@ public class AiChatFragment extends Fragment {
 
         chatViewModel.getAllMessages().observe(getViewLifecycleOwner(), messages -> {
             adapter.submitList(new ArrayList<>(messages));
-            binding.recyclerView.scrollToPosition(messages.size() - 1);
+            binding.recyclerView.post(() -> binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1));
         });
 
         binding.sendButton.setOnClickListener(v -> {
@@ -63,12 +64,30 @@ public class AiChatFragment extends Fragment {
                 chatViewModel.addMessage(response, false);
 
                 binding.editTextMessage.setText("");
+                binding.recyclerView.post(() -> binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1));
             }
+
+//            // 키보드 숨기기
+//            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//            imm.hideSoftInputFromWindow(binding.editTextMessage.getWindowToken(), 0);
+
         });
 
         binding.btnRetry.setOnClickListener(v -> {
             chatViewModel.deleteAllMessages();
+            binding.recyclerView.postDelayed(() -> {
+                binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+            }, 100); // 초기화 후 지연 스크롤
         });
 
+        binding.getRoot().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            Rect r = new Rect();
+            binding.getRoot().getWindowVisibleDisplayFrame(r);
+            int screenHeight = binding.getRoot().getRootView().getHeight();
+            int keypadHeight = screenHeight - r.bottom;
+            if (keypadHeight > screenHeight * 0.15) {
+                binding.recyclerView.post(() -> binding.recyclerView.scrollToPosition(adapter.getItemCount() - 1));
+            }
+        });
     }
 }

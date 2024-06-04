@@ -4,23 +4,35 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
+import com.example.pathfinder.data.AppDatabase;
+import com.example.pathfinder.data.dao.MessageDao;
 import com.example.pathfinder.data.entity.MessageEntity;
-import com.example.pathfinder.data.repository.MessageRepository;
 import com.example.pathfinder.dto.MessageDto;
-import com.example.pathfinder.utils.MessageMapper;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class ChatViewModel extends AndroidViewModel {
-    private final MessageRepository repository;
+    private final MessageDao messageDao;
     private final LiveData<List<MessageDto>> allMessages;
+    private final ExecutorService executorService;
 
     public ChatViewModel(Application application) {
         super(application);
-        repository = new MessageRepository(application);
-        allMessages = Transformations.map(repository.getAllMessages(), MessageMapper::entitiesToDtos);
+        AppDatabase db = AppDatabase.getDatabase(application);
+        messageDao = db.messageDao();
+        executorService = Executors.newSingleThreadExecutor();
+
+        allMessages = Transformations.map(messageDao.getAllMessages(), messageEntities -> {
+            return messageEntities.stream()
+                    .map(MessageEntity::toDto)
+                    .collect(Collectors.toList());
+        });
     }
 
     public LiveData<List<MessageDto>> getAllMessages() {
@@ -28,11 +40,12 @@ public class ChatViewModel extends AndroidViewModel {
     }
 
     public void addMessage(String content, boolean isMine) {
-        MessageEntity message = new MessageEntity(content, isMine);
-        repository.insert(message);
+        executorService.execute(() -> {
+            messageDao.insert(new MessageEntity(content, isMine));
+        });
     }
 
     public void deleteAllMessages() {
-        repository.deleteAll();
+        executorService.execute(messageDao::deleteAll);
     }
 }

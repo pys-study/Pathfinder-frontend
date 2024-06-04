@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Window의 softInputMode를 adjustResize로 설정
-        getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
 
         // 메뉴 항목 선택 시의 동작을 정의

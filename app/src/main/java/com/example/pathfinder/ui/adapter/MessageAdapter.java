@@ -25,12 +25,12 @@ public class MessageAdapter extends ListAdapter<MessageDto, MessageAdapter.Messa
     private static final DiffUtil.ItemCallback<MessageDto> DIFF_CALLBACK = new DiffUtil.ItemCallback<MessageDto>() {
         @Override
         public boolean areItemsTheSame(@NonNull MessageDto oldItem, @NonNull MessageDto newItem) {
-            return oldItem == newItem;
+            return oldItem.getTimestamp() == newItem.getTimestamp();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull MessageDto oldItem, @NonNull MessageDto newItem) {
-            return oldItem.getContent().equals(newItem.getContent()) && oldItem.isMine() == newItem.isMine(); // 메시지 내용 비교 로직 (수정됨)
+            return oldItem.getContent().equals(newItem.getContent()) && oldItem.isMine() == newItem.isMine();
         }
     };
 
