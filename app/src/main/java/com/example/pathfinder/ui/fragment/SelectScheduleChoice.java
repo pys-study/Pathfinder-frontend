@@ -78,7 +78,7 @@ public class SelectScheduleChoice extends Fragment {
                     @Override
                     public void onChanged(String selectedTexts) {
                         Log.d(TAG, "Selected Texts: " + selectedTexts);
-                        sendRequestToGemini(selectedTexts);
+                        sendRequestToGemini("그리고 여행일정을 여행지에 맞춰서 간략하게 작성하라\n"+ selectedTexts);
                     }
                 });
             }

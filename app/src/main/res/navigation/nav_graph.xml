@@ -88,7 +88,7 @@
         android:id="@+id/googleMapFragment"
         android:name="com.example.pathfinder.ui.fragment.GoogleMapFragment"
         android:label="framgent_google_map"
-        tools:layout="@layout/framgent_google_map" />
+        tools:layout="@layout/fragment_google_map" />
 
 
 </navigation>
