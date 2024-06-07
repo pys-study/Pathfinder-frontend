@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ApiClient {
     private static final String BASE_URL = "https://generativelanguage.googleapis.com/";
+    private static final String DIRECTIONS_BASE_URL = "https://maps.googleapis.com/maps/api/";
 
     public static GeminiApi getApi() {
-        // OkHttp 클라이언트에 타임아웃 설정 추가
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
@@ -25,4 +25,6 @@ public class ApiClient {
 
         return retrofit.create(GeminiApi.class);
     }
+
+
 }

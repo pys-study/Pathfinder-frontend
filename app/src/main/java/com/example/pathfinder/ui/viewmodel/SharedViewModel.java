@@ -8,6 +8,7 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<String> selectedTexts = new MutableLiveData<>("");
     private final MutableLiveData<String> response = new MutableLiveData<>();
 
+
     public void setNickname(String nickname) {
         this.nickname.setValue(nickname);
     }
@@ -33,4 +34,5 @@ public class SharedViewModel extends ViewModel {
     public void setResponse(String response) {
         this.response.setValue(response);
     }
+
 }

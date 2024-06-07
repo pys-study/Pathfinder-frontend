@@ -7,11 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 import com.example.pathfinder.R;
 import com.example.pathfinder.databinding.FragmentGoogleMapBinding;
@@ -59,22 +63,39 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Back button handling
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // ViewModel의 selectedTexts 초기화
+                sharedViewModel.getSelectedTexts().setValue("");
+
+                NavController navController = Navigation.findNavController(view);
+                // 백스택 초기화하고 startTravelFragment로 이동
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.startTravelFragment, true)
+                        .build();
+                navController.navigate(R.id.action_googleMapFragment_to_startTravelFragment, null, navOptions);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+    }
+
+    @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
         // 서울의 3군데 여행지
-        LatLng place1 = new LatLng(35.1595, 129.0908); // Example coordinates
-//        LatLng place2 = new LatLng(37.5665, 126.9780); // Seoul, South Korea
-//        LatLng place3 = new LatLng(35.1796, 129.0756); // Busan, South Korea
+        LatLng place1 = new LatLng(37.5561, 126.9723); // 서울역
+        LatLng place2 = new LatLng(37.5796, 126.9770); // 경복궁
 
-        mMap.addMarker(new MarkerOptions().position(place1).title("Place 1"));
-//        mMap.addMarker(new MarkerOptions().position(place2).title("Place 2"));
-//        mMap.addMarker(new MarkerOptions().position(place3).title("Place 3"));
+        mMap.addMarker(new MarkerOptions().position(place1).title("Seoul"));
+        mMap.addMarker(new MarkerOptions().position(place2).title("Gyeongbokgung Palace"));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1, 12));
+
     }
-
-
-
-
 }

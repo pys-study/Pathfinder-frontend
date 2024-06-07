@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -50,6 +51,8 @@ public class PeriodFragment extends Fragment {
         for (Button button : buttons) {
             button.setOnClickListener(buttonClickListener);
         }
+
+
 
         binding.btnNext.setOnClickListener(v -> {
             if (selectedButton == null) {

@@ -1,5 +1,6 @@
 package com.example.pathfinder;
 
+import android.app.AlertDialog;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -71,6 +72,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
+        if (navController.getCurrentDestination() != null && navController.getCurrentDestination().getId() == R.id.startTravelFragment) {
+            new AlertDialog.Builder(this)
+                    .setMessage("앱을 종료하시겠습니까?")
+                    .setCancelable(false)
+                    .setPositiveButton("네", (dialog, id) -> finish())
+                    .setNegativeButton("아니오", null)
+                    .show();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private void getKeyHash() {

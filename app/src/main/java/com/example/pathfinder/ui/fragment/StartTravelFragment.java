@@ -16,11 +16,9 @@ import com.example.pathfinder.databinding.FragmentStartTravelBinding;
 
 public class StartTravelFragment extends Fragment {
 
-    private FragmentStartTravelBinding binding;
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentStartTravelBinding.inflate(inflater, container, false);
+        com.example.pathfinder.databinding.FragmentStartTravelBinding binding = FragmentStartTravelBinding.inflate(inflater, container, false);
 
         binding.btnStartRecommend.setOnClickListener(v->{
             NavController navController = NavHostFragment.findNavController(this);

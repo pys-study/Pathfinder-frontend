@@ -77,7 +77,7 @@ public class SelectScheduleChoice extends Fragment {
                 sharedViewModel.getSelectedTexts().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
                     public void onChanged(String selectedTexts) {
-                        Log.d(TAG, "Selected Texts: " + selectedTexts);
+                        Log.d("gemini", "Selected Texts: " + selectedTexts);
                         sendRequestToGemini("그리고 여행일정을 여행지에 맞춰서 자세히 작성해줘. 그리고 마크다운 문법 말고 android TextVIew에 잘 보일 수 있도록 맞춰서 작성해\n"+ selectedTexts);
                     }
                 });
