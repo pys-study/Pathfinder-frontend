@@ -3,11 +3,16 @@ package com.example.pathfinder.ui.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.pathfinder.dto.LocationDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SharedViewModel extends ViewModel {
     private final MutableLiveData<String> nickname = new MutableLiveData<>();
     private final MutableLiveData<String> selectedTexts = new MutableLiveData<>("");
     private final MutableLiveData<String> response = new MutableLiveData<>();
-
+    private final MutableLiveData<List<LocationDto>> locations = new MutableLiveData<>(new ArrayList<>());
 
     public void setNickname(String nickname) {
         this.nickname.setValue(nickname);
@@ -35,4 +40,18 @@ public class SharedViewModel extends ViewModel {
         this.response.setValue(response);
     }
 
+    public MutableLiveData<List<LocationDto>> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<LocationDto> locations) {
+        this.locations.setValue(locations);
+    }
+
+    public void addLocation(LocationDto location) {
+        List<LocationDto> currentLocations = locations.getValue();
+        if (currentLocations == null) currentLocations = new ArrayList<>();
+        currentLocations.add(location);
+        locations.setValue(currentLocations);
+    }
 }

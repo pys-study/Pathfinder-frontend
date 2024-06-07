@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 
 import com.example.pathfinder.R;
 import com.example.pathfinder.databinding.FragmentGoogleMapBinding;
+import com.example.pathfinder.dto.LocationDto;
 import com.example.pathfinder.ui.viewmodel.SharedViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +27,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
 
@@ -88,14 +91,20 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // 서울의 3군데 여행지
-        LatLng place1 = new LatLng(37.5561, 126.9723); // 서울역
-        LatLng place2 = new LatLng(37.5796, 126.9770); // 경복궁
-
-        mMap.addMarker(new MarkerOptions().position(place1).title("Seoul"));
-        mMap.addMarker(new MarkerOptions().position(place2).title("Gyeongbokgung Palace"));
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place1, 12));
-
+        sharedViewModel.getLocations().observe(getViewLifecycleOwner(), new Observer<List<LocationDto>>() {
+            @Override
+            public void onChanged(List<LocationDto> locations) {
+                if (locations != null && !locations.isEmpty()) {
+                    for (LocationDto location : locations) {
+                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(location.getName()));
+                        Log.d(TAG, "Marker added: " + location.getName() + " at " + latLng.toString());
+                    }
+                    // 첫 번째 위치로 카메라 이동
+                    LatLng firstLocation = new LatLng(locations.get(0).getLatitude(), locations.get(0).getLongitude());
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstLocation, 12));
+                }
+            }
+        });
     }
 }

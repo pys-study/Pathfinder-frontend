@@ -20,18 +20,19 @@ import com.example.pathfinder.R;
 import com.example.pathfinder.data.api.ApiClient;
 import com.example.pathfinder.data.api.GeminiApi;
 import com.example.pathfinder.databinding.FragmentScheduleChoiceBinding;
+import com.example.pathfinder.dto.LocationDto;
 import com.example.pathfinder.dto.RequestBody;
 import com.example.pathfinder.dto.ResponseBody;
 import com.example.pathfinder.ui.viewmodel.SharedViewModel;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.MediaType;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SelectScheduleChoice extends Fragment {
 
@@ -78,7 +79,7 @@ public class SelectScheduleChoice extends Fragment {
                     @Override
                     public void onChanged(String selectedTexts) {
                         Log.d("gemini", "Selected Texts: " + selectedTexts);
-                        sendRequestToGemini("그리고 여행일정을 여행지에 맞춰서 자세히 작성해줘. 그리고 마크다운 문법 말고 android TextVIew에 잘 보일 수 있도록 맞춰서 작성해\n"+ selectedTexts);
+                        requestLatLon(selectedTexts);
                     }
                 });
             }
@@ -87,9 +88,21 @@ public class SelectScheduleChoice extends Fragment {
         return binding.getRoot();
     }
 
-    private void sendRequestToGemini(String selectedTexts) {
-        // RequestBody 객체 생성
-        RequestBody.Content.Part part = new RequestBody.Content.Part(selectedTexts);
+    private void requestLatLon(String selectedTexts) {
+
+        String requestText = selectedTexts + "\n 위 주제를 바탕으로 대표적인 아래의 형식에 맞춰서 여행지의 위도와 경도를 제공해줘.파싱해서 사용할 수 있도록 아래 형식에 맞춰 JSON 형식만 보내라" +
+                "[  {\n" +
+                "    \"name\": \"\",\n" +
+                "    \"latitude\": ,\n" +
+                "    \"longitude\": \n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"name\": \"\",\n" +
+                "    \"latitude\": ,\n" +
+                "    \"longitude\": \n" +
+                "  },]";
+
+        RequestBody.Content.Part part = new RequestBody.Content.Part(requestText);
         List<RequestBody.Content.Part> parts = new ArrayList<>();
         parts.add(part);
         RequestBody.Content content = new RequestBody.Content(parts);
@@ -97,31 +110,91 @@ public class SelectScheduleChoice extends Fragment {
         contents.add(content);
         RequestBody requestBody = new RequestBody(contents);
 
-        // RequestBody 객체를 JSON으로 변환
         Gson gson = new Gson();
         String json = gson.toJson(requestBody);
         okhttp3.RequestBody body = okhttp3.RequestBody.create(MediaType.get("application/json; charset=utf-8"), json);
 
-        // Retrofit API 호출
         GeminiApi api = ApiClient.getApi();
         Call<ResponseBody> call = api.generateContent(API_KEY, body);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // 응답이 null이 아닌지 확인
                     ResponseBody responseBody = response.body();
                     if (responseBody.candidates != null && !responseBody.candidates.isEmpty() &&
                             responseBody.candidates.get(0).content != null &&
                             responseBody.candidates.get(0).content.parts != null &&
                             !responseBody.candidates.get(0).content.parts.isEmpty()) {
-                        // 서버로부터 받은 응답 처리
+                        String latLonResponse = responseBody.candidates.get(0).content.parts.get(0).text;
+                        Log.d(TAG, "LatLon Response: " + latLonResponse);
+                        // parse latLonResponse and save to ViewModel
+                        parseAndSaveLatLon(latLonResponse);
+                        requestTravelSchedule(latLonResponse, selectedTexts);
+                    } else {
+                        Log.e(TAG, "Response body structure is not as expected.");
+                        Log.d(TAG, "Full Response: " + gson.toJson(responseBody));
+                    }
+                } else {
+                    Log.e(TAG, "Response error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "Request failed", t);
+            }
+        });
+    }
+
+    private void parseAndSaveLatLon(String latLonResponse) {
+        // Assuming latLonResponse is a JSON string containing location data
+        Gson gson = new Gson();
+        try {
+            LocationDto[] locations = gson.fromJson(latLonResponse, LocationDto[].class);
+            List<LocationDto> locationList = new ArrayList<>();
+            for (LocationDto location : locations) {
+                Log.d(TAG, "Location: " + location.toString());
+                locationList.add(location);
+            }
+            sharedViewModel.setLocations(locationList);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to parse latLonResponse", e);
+        }
+    }
+
+
+
+    private void requestTravelSchedule(String latLonResponse, String selectedTexts) {
+        String requestText = latLonResponse + "\n위의 여행지를 중심으로 아래의 주제에 맞춰서 여행 일정을 여행지에 맞춰서 자세히 작성해줘.\n"  + selectedTexts;
+
+        RequestBody.Content.Part part = new RequestBody.Content.Part(requestText);
+        List<RequestBody.Content.Part> parts = new ArrayList<>();
+        parts.add(part);
+        RequestBody.Content content = new RequestBody.Content(parts);
+        List<RequestBody.Content> contents = new ArrayList<>();
+        contents.add(content);
+        RequestBody requestBody = new RequestBody(contents);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(requestBody);
+        okhttp3.RequestBody body = okhttp3.RequestBody.create(MediaType.get("application/json; charset=utf-8"), json);
+
+        GeminiApi api = ApiClient.getApi();
+        Call<ResponseBody> call = api.generateContent(API_KEY, body);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ResponseBody responseBody = response.body();
+                    if (responseBody.candidates != null && !responseBody.candidates.isEmpty() &&
+                            responseBody.candidates.get(0).content != null &&
+                            responseBody.candidates.get(0).content.parts != null &&
+                            !responseBody.candidates.get(0).content.parts.isEmpty()) {
                         String responseText = responseBody.candidates.get(0).content.parts.get(0).text;
                         Log.d(TAG, "Response: " + responseText);
                         sharedViewModel.setResponse(responseText);
                     } else {
                         Log.e(TAG, "Response body structure is not as expected.");
-                        // 응답 본문을 로그로 출력
                         Log.d(TAG, "Full Response: " + gson.toJson(responseBody));
                     }
                 } else {
@@ -136,9 +209,6 @@ public class SelectScheduleChoice extends Fragment {
                 navigateToNextFragment();
             }
         });
-
-        // API key를 로그로 출력
-        Log.d(TAG, "API Key: " + API_KEY);
     }
 
     private void navigateToNextFragment() {
