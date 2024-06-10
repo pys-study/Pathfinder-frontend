@@ -95,7 +95,7 @@ public class SelectScheduleChoice extends Fragment {
 
     private void requestLatLon(String selectedTexts) {
 
-        String requestText = selectedTexts + "\n 위 주제를 바탕으로 대표적인 아래의 형식에 맞춰서 여행지의 위도와 경도를 제공해줘.파싱해서 사용할 수 있도록 아래 형식에 맞춰 JSON 형식만 보내라" +
+        String requestText = selectedTexts + "\n 위 주제를 바탕으로 대표적인 아래의 형식에 맞춰서 여행지의 위도와 경도를 제공해줘.파싱해서 사용할 수 있도록 다른 텍스트는 절대 넣지 말고 아래 형식에 해당하는 JSON 형식만 보내라" +
                 "[  {\n" +
                 "    \"name\": \"\",\n" +
                 "    \"latitude\": ,\n" +
@@ -125,11 +125,6 @@ public class SelectScheduleChoice extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                // ProgressDialogFragment 숨기기
-                if (progressDialog.isVisible()) {
-                    progressDialog.dismiss();
-                }
-
                 if (response.isSuccessful() && response.body() != null) {
                     ResponseBody responseBody = response.body();
                     if (responseBody.candidates != null && !responseBody.candidates.isEmpty() &&
@@ -137,6 +132,10 @@ public class SelectScheduleChoice extends Fragment {
                             responseBody.candidates.get(0).content.parts != null &&
                             !responseBody.candidates.get(0).content.parts.isEmpty()) {
                         String latLonResponse = responseBody.candidates.get(0).content.parts.get(0).text;
+
+                        // 불필요한 문자를 제거합니다.
+                        latLonResponse = latLonResponse.replace("```", "").trim();
+
                         Log.d(TAG, "LatLon Response: " + latLonResponse);
                         // parse latLonResponse and save to ViewModel
                         parseAndSaveLatLon(latLonResponse);
@@ -202,11 +201,6 @@ public class SelectScheduleChoice extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                // ProgressDialogFragment 숨기기
-                if (progressDialog.isVisible()) {
-                    progressDialog.dismiss();
-                }
-
                 if (response.isSuccessful() && response.body() != null) {
                     ResponseBody responseBody = response.body();
                     if (responseBody.candidates != null && !responseBody.candidates.isEmpty() &&
@@ -243,5 +237,11 @@ public class SelectScheduleChoice extends Fragment {
     private void navigateToNextFragment() {
         NavController navController = NavHostFragment.findNavController(this);
         navController.navigate(R.id.action_selectScheduleChoice_to_googleMapFragment);
+
+        // ProgressDialogFragment 숨기기
+        if (progressDialog.isVisible()) {
+            progressDialog.dismiss();
+        }
+
     }
 }

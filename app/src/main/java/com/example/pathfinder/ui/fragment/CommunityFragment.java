@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.pathfinder.R;
 import com.example.pathfinder.databinding.FragmentCommunityBinding;
 
 public class CommunityFragment extends Fragment {
