@@ -60,6 +60,7 @@ public class PeriodFragment extends Fragment {
             } else {
                 String buttonText = selectedButton.getText().toString();
                 sharedViewModel.addText(buttonText);
+                sharedViewModel.setPeriod(buttonText); // period에 저장
                 NavController navController = NavHostFragment.findNavController(this);
                 navController.navigate(R.id.action_periodFragment_to_selectWhoFragment);
             }

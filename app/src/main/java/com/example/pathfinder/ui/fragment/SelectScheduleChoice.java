@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -39,6 +40,7 @@ public class SelectScheduleChoice extends Fragment {
     private FragmentScheduleChoiceBinding binding;
     private SharedViewModel sharedViewModel;
     private Button selectedButton;
+    public static ProgressDialogFragment progressDialog;
     private static final String TAG = "SelectScheduleChoice";
 
     // API key 값 변수로 분리
@@ -50,6 +52,7 @@ public class SelectScheduleChoice extends Fragment {
         binding = FragmentScheduleChoiceBinding.inflate(inflater, container, false);
 
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        progressDialog = ProgressDialogFragment.newInstance();
 
         View.OnClickListener buttonClickListener = v -> {
             if (selectedButton != null) {
@@ -74,6 +77,8 @@ public class SelectScheduleChoice extends Fragment {
             } else {
                 String buttonText = selectedButton.getText().toString();
                 sharedViewModel.addText(buttonText);
+
+                progressDialog.show(getParentFragmentManager(), "progress");
 
                 sharedViewModel.getSelectedTexts().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
@@ -119,6 +124,12 @@ public class SelectScheduleChoice extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                // ProgressDialogFragment 숨기기
+                if (progressDialog.isVisible()) {
+                    progressDialog.dismiss();
+                }
+
                 if (response.isSuccessful() && response.body() != null) {
                     ResponseBody responseBody = response.body();
                     if (responseBody.candidates != null && !responseBody.candidates.isEmpty() &&
@@ -141,6 +152,12 @@ public class SelectScheduleChoice extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                // ProgressDialogFragment 숨기기
+                if (progressDialog.isVisible()) {
+                    progressDialog.dismiss();
+                }
+
                 Log.e(TAG, "Request failed", t);
             }
         });
@@ -184,6 +201,12 @@ public class SelectScheduleChoice extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                // ProgressDialogFragment 숨기기
+                if (progressDialog.isVisible()) {
+                    progressDialog.dismiss();
+                }
+
                 if (response.isSuccessful() && response.body() != null) {
                     ResponseBody responseBody = response.body();
                     if (responseBody.candidates != null && !responseBody.candidates.isEmpty() &&
@@ -205,6 +228,12 @@ public class SelectScheduleChoice extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                // ProgressDialogFragment 숨기기
+                if (progressDialog.isVisible()) {
+                    progressDialog.dismiss();
+                }
+
                 Log.e(TAG, "Request failed", t);
                 navigateToNextFragment();
             }

@@ -38,6 +38,10 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
     private TextView responseTextView;
     private static final String TAG = "GoogleMapFragment";
 
+    private String selectedCountry;
+    private String selectedPeriod;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,12 +66,38 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+
+        sharedViewModel.getCountry().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String country) {
+                if (country != null && !country.isEmpty()) {
+                    binding.tvTitleGoogleMap.setText(country);
+                }
+            }
+        });
+
+        sharedViewModel.getPeriod().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String period) {
+                if (period != null && !period.isEmpty()) {
+                    String currentText = binding.tvTitleGoogleMap.getText().toString();
+                    binding.tvTitleGoogleMap.setText(currentText + ", " + period);
+                }
+            }
+        });
+
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // ProgressDialogFragment 숨기기
+        if (SelectScheduleChoice.progressDialog != null && SelectScheduleChoice.progressDialog.isVisible()) {
+            SelectScheduleChoice.progressDialog.dismiss();
+        }
+
 
         // Back button handling
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {

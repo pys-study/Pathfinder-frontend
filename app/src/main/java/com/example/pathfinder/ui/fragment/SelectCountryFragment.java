@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -58,12 +57,13 @@ public class SelectCountryFragment extends Fragment {
         binding.btnNext.setOnClickListener(v -> {
             if (selectedButton == null) {
                 Toast.makeText(getContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
-            } else{
+            } else {
 
-            String buttonText = selectedButton.getText().toString();
-            sharedViewModel.addText(buttonText);
-            NavController navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.action_selectCountryFragment_to_periodFragment);
+                String buttonText = selectedButton.getText().toString();
+                sharedViewModel.addText(buttonText);
+                sharedViewModel.setCountry(buttonText);
+                NavController navController = NavHostFragment.findNavController(this);
+                navController.navigate(R.id.action_selectCountryFragment_to_periodFragment);
             }
         });
 

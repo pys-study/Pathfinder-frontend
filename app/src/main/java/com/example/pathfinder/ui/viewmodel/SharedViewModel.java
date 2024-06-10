@@ -13,6 +13,9 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<String> selectedTexts = new MutableLiveData<>("");
     private final MutableLiveData<String> response = new MutableLiveData<>();
     private final MutableLiveData<List<LocationDto>> locations = new MutableLiveData<>(new ArrayList<>());
+    private final MutableLiveData<String> country = new MutableLiveData<>();
+    private final MutableLiveData<String> period = new MutableLiveData<>();
+
 
     public void setNickname(String nickname) {
         this.nickname.setValue(nickname);
@@ -48,10 +51,27 @@ public class SharedViewModel extends ViewModel {
         this.locations.setValue(locations);
     }
 
-    public void addLocation(LocationDto location) {
-        List<LocationDto> currentLocations = locations.getValue();
-        if (currentLocations == null) currentLocations = new ArrayList<>();
-        currentLocations.add(location);
-        locations.setValue(currentLocations);
+    public MutableLiveData<String> getCountry() {
+        return country;
     }
+
+    public void setCountry(String country) {
+        this.country.setValue(country);
+    }
+
+    public MutableLiveData<String> getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period.setValue(period);
+    }
+
+
+//    public void addLocation(LocationDto location) {
+//        List<LocationDto> currentLocations = locations.getValue();
+//        if (currentLocations == null) currentLocations = new ArrayList<>();
+//        currentLocations.add(location);
+//        locations.setValue(currentLocations);
+//    }
 }
