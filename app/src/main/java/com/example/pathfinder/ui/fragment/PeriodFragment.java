@@ -59,7 +59,7 @@ public class PeriodFragment extends Fragment {
                 Toast.makeText(getContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
             } else {
                 String buttonText = selectedButton.getText().toString();
-                sharedViewModel.addText(buttonText);
+
                 sharedViewModel.setPeriod(buttonText); // period에 저장
                 NavController navController = NavHostFragment.findNavController(this);
                 navController.navigate(R.id.action_periodFragment_to_selectWhoFragment);

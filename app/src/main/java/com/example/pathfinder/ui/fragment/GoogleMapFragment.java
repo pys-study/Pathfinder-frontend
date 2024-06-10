@@ -38,9 +38,6 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
     private TextView responseTextView;
     private static final String TAG = "GoogleMapFragment";
 
-    private String selectedCountry;
-    private String selectedPeriod;
-
 
     @Nullable
     @Override
@@ -104,7 +101,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void handleOnBackPressed() {
                 // ViewModel의 selectedTexts 초기화
-                sharedViewModel.getSelectedTexts().setValue("");
+                sharedViewModel.getSummary().setValue("");
 
                 NavController navController = Navigation.findNavController(view);
                 // 백스택 초기화하고 startTravelFragment로 이동

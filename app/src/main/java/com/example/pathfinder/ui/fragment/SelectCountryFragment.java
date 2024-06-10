@@ -60,7 +60,7 @@ public class SelectCountryFragment extends Fragment {
             } else {
 
                 String buttonText = selectedButton.getText().toString();
-                sharedViewModel.addText(buttonText);
+
                 sharedViewModel.setCountry(buttonText);
                 NavController navController = NavHostFragment.findNavController(this);
                 navController.navigate(R.id.action_selectCountryFragment_to_periodFragment);

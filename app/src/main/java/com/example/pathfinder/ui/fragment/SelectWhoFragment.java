@@ -58,7 +58,7 @@ public class SelectWhoFragment extends Fragment {
             }else{
 
                 String buttonText = selectedButton.getText().toString();
-                sharedViewModel.addText(buttonText);
+                sharedViewModel.setWho(buttonText);
                 NavController navController = NavHostFragment.findNavController(this);
                 navController.navigate(R.id.action_selectWhoFragment_to_selectTravelStyle);
             }

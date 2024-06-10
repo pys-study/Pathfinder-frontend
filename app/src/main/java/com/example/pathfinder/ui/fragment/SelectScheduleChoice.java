@@ -76,11 +76,11 @@ public class SelectScheduleChoice extends Fragment {
                 Toast.makeText(getContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
             } else {
                 String buttonText = selectedButton.getText().toString();
-                sharedViewModel.addText(buttonText);
+                sharedViewModel.setSchedule(buttonText);
 
                 progressDialog.show(getParentFragmentManager(), "progress");
 
-                sharedViewModel.getSelectedTexts().observe(getViewLifecycleOwner(), new Observer<String>() {
+                sharedViewModel.getSummary().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
                     public void onChanged(String selectedTexts) {
                         Log.d("gemini", "Selected Texts: " + selectedTexts);
