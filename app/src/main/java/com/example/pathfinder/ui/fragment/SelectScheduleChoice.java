@@ -95,7 +95,8 @@ public class SelectScheduleChoice extends Fragment {
 
     private void requestLatLon(String selectedTexts) {
 
-        String requestText = selectedTexts + "\n 위 주제를 바탕으로 대표적인 아래의 형식에 맞춰서 여행지의 위도와 경도를 제공해줘.파싱해서 사용할 수 있도록 다른 텍스트는 절대 넣지 말고 아래 형식에 해당하는 JSON 형식만 보내라" +
+        String requestText = selectedTexts + "\n 위 주제를 바탕으로 대표적인 아래의 형식에 맞춰서 여행지의 위도와 경도를 제공해줘." +
+                "파싱해서 사용할 수 있도록 다른 텍스트는 절대 넣지 말고 아래 형식에 해당하는 JSON 형식만 보내라" +
                 "[  {\n" +
                 "    \"name\": \"\",\n" +
                 "    \"latitude\": ,\n" +

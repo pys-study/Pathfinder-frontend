@@ -1,104 +1,94 @@
 package com.example.pathfinder.ui.viewmodel;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.pathfinder.data.repository.SharedRepository;
 import com.example.pathfinder.dto.LocationDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SharedViewModel extends ViewModel {
-    private final MutableLiveData<String> nickname = new MutableLiveData<>();
-    private final MutableLiveData<String> response = new MutableLiveData<>();
-    private final MutableLiveData<List<LocationDto>> locations = new MutableLiveData<>(new ArrayList<>());
-    private final MutableLiveData<String> country = new MutableLiveData<>();
-    private final MutableLiveData<String> period = new MutableLiveData<>();
-    private final MutableLiveData<String> who = new MutableLiveData<>();
-    private final MutableLiveData<String> style = new MutableLiveData<>();
-    private final MutableLiveData<String> schedule = new MutableLiveData<>();
-    private final MutableLiveData<String> summary = new MutableLiveData<>();
+    private final SharedRepository repository;
+
+    public SharedViewModel() {
+        repository = new SharedRepository();
+    }
 
     public void setNickname(String nickname) {
-        this.nickname.setValue(nickname);
+        repository.getNickname().setValue(nickname);
     }
 
-    public MutableLiveData<String> getNickname() {
-        return nickname;
+    public LiveData<String> getNickname() {
+        return repository.getNickname();
     }
 
-    public MutableLiveData<String> getResponse() {
-        return response;
+    public LiveData<String> getResponse() {
+        return repository.getResponse();
     }
 
     public void setResponse(String response) {
-        this.response.setValue(response);
+        repository.getResponse().setValue(response);
     }
 
-    public MutableLiveData<List<LocationDto>> getLocations() {
-        return locations;
+    public LiveData<List<LocationDto>> getLocations() {
+        return repository.getLocations();
     }
 
     public void setLocations(List<LocationDto> locations) {
-        this.locations.setValue(locations);
+        repository.getLocations().setValue(locations);
     }
 
-    public MutableLiveData<String> getCountry() {
-        return country;
+    public LiveData<String> getCountry() {
+        return repository.getCountry();
     }
 
     public void setCountry(String country) {
-        this.country.setValue(country);
-        updateSummary();
+        repository.getCountry().setValue(country);
+        repository.updateSummary();
     }
 
-    public MutableLiveData<String> getPeriod() {
-        return period;
+    public LiveData<String> getPeriod() {
+        return repository.getPeriod();
     }
 
     public void setPeriod(String period) {
-        this.period.setValue(period);
-        updateSummary();
+        repository.getPeriod().setValue(period);
+        repository.updateSummary();
     }
 
-    public MutableLiveData<String> getWho() {
-        return who;
+    public LiveData<String> getWho() {
+        return repository.getWho();
     }
 
     public void setWho(String who) {
-        this.who.setValue(who);
-        updateSummary();
+        repository.getWho().setValue(who);
+        repository.updateSummary();
     }
 
-    public MutableLiveData<String> getStyle() {
-        return style;
+    public LiveData<String> getStyle() {
+        return repository.getStyle();
     }
 
     public void setStyle(String style) {
-        this.style.setValue(style);
-        updateSummary();
+        repository.getStyle().setValue(style);
+        repository.updateSummary();
     }
 
-    public MutableLiveData<String> getSchedule() {
-        return schedule;
+    public LiveData<String> getSchedule() {
+        return repository.getSchedule();
     }
 
     public void setSchedule(String schedule) {
-        this.schedule.setValue(schedule);
-        updateSummary();
+        repository.getSchedule().setValue(schedule);
+        repository.updateSummary();
     }
 
-    public MutableLiveData<String> getSummary() {
-        return summary;
+    public LiveData<String> getSummary() {
+        return repository.getSummary();
     }
 
-    private void updateSummary() {
-        StringBuilder summaryBuilder = new StringBuilder();
-        if (country.getValue() != null) summaryBuilder.append(country.getValue()).append(" ");
-        if (period.getValue() != null) summaryBuilder.append(period.getValue()).append(" ");
-        if (who.getValue() != null) summaryBuilder.append(who.getValue()).append(" ");
-        if (style.getValue() != null) summaryBuilder.append(style.getValue()).append(" ");
-        if (schedule.getValue() != null) summaryBuilder.append(schedule.getValue()).append(" ");
-        summary.setValue(summaryBuilder.toString().trim());
+    public void setSummary(String summary) {
+        repository.getSummary().setValue(summary);
     }
 }

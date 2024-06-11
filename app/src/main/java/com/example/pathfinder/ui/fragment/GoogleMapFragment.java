@@ -101,7 +101,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void handleOnBackPressed() {
                 // ViewModel의 selectedTexts 초기화
-                sharedViewModel.getSummary().setValue("");
+                sharedViewModel.setSummary("");
 
                 NavController navController = Navigation.findNavController(view);
                 // 백스택 초기화하고 startTravelFragment로 이동
